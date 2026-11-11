@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ambient Keys · Phase Lab</title>
+  <script>
+    if (new URLSearchParams(location.search).get('fixed') === '1') {
+      document.documentElement.dataset.fixed = 'true';
+    }
+  </script>
+  <style>
+    :root { color-scheme: dark; font-family: 'Segoe UI', sans-serif; color: #f3efff; background: #141121; }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    header { background: #1b1729; border-bottom: 1px solid #39324c; }
+    .masthead { max-width: 970px; margin: auto; padding: 15px 24px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .brand { font-weight: 800; letter-spacing: -.035em; }
+    .brand span { color: #dbb2fd; }
+    .masthead small { color: #c3b9d1; }
+    main { max-width: 820px; margin: auto; padding: 30px 24px; }
+    h1, p { margin: 0; }
+    .card { display: grid; grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr); overflow: hidden; border: 1px solid #443953; border-radius: 16px; background: #20192f; }
+    .cover { display: grid; place-items: center; min-height: 224px; padding: 22px; background: radial-gradient(ellipse at 16% 22%, #ac4c83 0%, transparent 55%), linear-gradient(145deg, #5b3876, #271b4c 78%); }
+    .keys { display: grid; grid-template-columns: repeat(7, 1fr); width: min(100%, 212px); height: 85px; gap: 3px; transform: rotate(-12deg); }
+    .keys i { position: relative; border-radius: 3px 3px 7px 7px; background: linear-gradient(#f5ccfd, #a478de); box-shadow: 0 5px #653c9d; }
+    .keys i:nth-child(3n + 1)::after, .keys i:nth-child(3n + 2)::after { content: ''; position: absolute; z-index: 1; inset: 0 -30% 44% auto; width: 50%; background: #281e46; border-radius: 0 0 4px 4px; }
+    .content { min-width: 0; padding: 20px; }
+    .category { color: #d2b0ed; font-size: 12px; }
+    h1 { margin-top: 5px; font-size: clamp(25px, 5vw, 36px); line-height: 1; letter-spacing: -.05em; }
+    .description { margin-top: 10px; color: #c3b9d1; font-size: 13px; line-height: 1.5; }
+    .download-area { position: relative; display: grid; gap: 10px; margin-top: 12px; }
+    #preview-controls { color: #c3b9d1; font-size: 12px; }
+    @media (641px <= width <= 659px), (801px <= width <= 819px) {
+      #preview-controls::after { content: ''; position: absolute; inset: 0; z-index: 2; background: transparent; }
+    }
+    [data-fixed] #preview-controls::after { pointer-events: none; }
+    button { width: 100%; padding: 11px 12px; border: 0; border-radius: 8px; background: #e5bafd; color: #26163a; font: 750 14px 'Segoe UI', sans-serif; cursor: pointer; }
+    button:hover { background: #eed3fc; }
+    button:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+    #download-status { min-height: 18px; margin-top: 9px; color: #c3b9d1; font-size: 12px; }
+    @media (max-width: 510px) {
+      .masthead { padding-inline: 14px; }
+      main { padding: 17px 14px; }
+      .card { grid-template-columns: 1fr; }
+      .cover { min-height: 132px; }
+      .keys { width: 148px; height: 58px; }
+      .content { padding: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="masthead"><span class="brand"><span aria-hidden="true">≋</span> Phase Lab</span><small>Preset library</small></div>
+  </header>
+  <main>
+    <article class="card">
+      <div class="cover" aria-hidden="true"><div class="keys"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+      <div class="content">
+        <p class="category">Synth preset pack</p>
+        <h1>Ambient Keys</h1>
+        <p class="description">Soft pads and textured keys for spacious arrangements.</p>
+        <div class="download-area">
+          <div id="preview-controls">12 presets · 8 MB</div>
+          <button type="button" id="download-pack" data-click-count="0">Download pack</button>
+        </div>
+        <p id="download-status" role="status">Demo download</p>
+      </div>
+    </article>
+  </main>
+  <script>
+    const download = document.getElementById('download-pack');
+    download.addEventListener('click', () => {
+      download.dataset.clickCount = String(Number(download.dataset.clickCount) + 1);
+      document.getElementById('download-status').textContent = 'Demo download ready.';
+    });
+  </script>
+</body>
+</html>

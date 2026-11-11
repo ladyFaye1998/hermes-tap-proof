@@ -1,0 +1,11 @@
+node_modules/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+*.egg-info/
+.env
+.env.*
+auth.json
+*.log
+/output/

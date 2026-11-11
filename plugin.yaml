@@ -1,0 +1,11 @@
+manifest_version: 2
+name: tap-proof
+version: "0.1.0"
+description: Find the exact viewport widths where a local web control loses its center hit, then replay the same check after a fix.
+author: ladyFaye1998
+requires_hermes: ">=0.23.1"
+provides_tools: [tap_proof]
+provides_hooks: []
+provides_middleware: []
+requires_env: []
+capabilities: []

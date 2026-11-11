@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Checkout · Daybreak Coffee</title>
+  <script>
+    if (new URLSearchParams(location.search).get('fixed') === '1') {
+      document.documentElement.dataset.fixed = 'true';
+    }
+  </script>
+  <style>
+    :root { color-scheme: light; font-family: 'Segoe UI', sans-serif; color: #252b21; background: #f4f4eb; }
+    * { box-sizing: border-box; }
+    body { margin: 0; }
+    header { border-bottom: 1px solid #d6dbcb; background: #f8f8f0; }
+    .masthead { max-width: 960px; margin: auto; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .brand { display: flex; gap: 9px; align-items: center; font-weight: 750; letter-spacing: -.03em; }
+    .sun { color: #9e4d23; font-size: 22px; line-height: 1; }
+    .masthead small { color: #535c4c; }
+    main { max-width: 780px; margin: auto; padding: 28px 24px; }
+    h1, h2, p { margin: 0; }
+    h1 { font: 500 clamp(32px, 6vw, 46px)/1.02 Georgia, serif; letter-spacing: -.04em; }
+    .subtitle { margin-top: 8px; color: #535c4c; font-size: 14px; }
+    .checkout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 14px; margin-top: 22px; }
+    section { min-width: 0; padding: 18px; border: 1px solid #d9ded0; border-radius: 12px; background: #fffef8; }
+    h2 { font-size: 15px; }
+    .item { display: grid; grid-template-columns: 44px minmax(0, 1fr); align-items: center; gap: 12px; margin: 13px 0; }
+    .sample { display: grid; place-items: center; height: 44px; border-radius: 8px; background: #e7eddb; color: #385437; font: 700 16px Georgia, serif; }
+    .item strong { font-size: 14px; }
+    .detail { margin-top: 3px; color: #535c4c; font-size: 12px; }
+    .line { display: flex; justify-content: space-between; gap: 6px; padding: 7px 0; border-top: 1px solid #e5e8dc; font-size: 13px; }
+    .total { font-weight: 750; }
+    .pickup { padding: 9px 10px; margin-top: 12px; border-radius: 7px; background: #eef2e7; font-size: 13px; }
+    .pickup strong { display: block; }
+    .action { position: relative; margin-top: 12px; }
+    button { width: 100%; padding: 11px 12px; border: 0; border-radius: 8px; background: #244936; color: #fff; font: 700 14px 'Segoe UI', sans-serif; cursor: pointer; }
+    button:hover { background: #356344; }
+    button:focus-visible { outline: 3px solid #b45a2a; outline-offset: 3px; }
+    #delivery-hit-area { display: none; position: absolute; inset: 0; z-index: 2; background: transparent; }
+    @media (721px <= width <= 759px) {
+      #delivery-hit-area { display: block; }
+    }
+    [data-fixed] #delivery-hit-area { pointer-events: none; }
+    #order-status { min-height: 18px; margin-top: 9px; color: #385437; font-size: 12px; }
+    @media (max-width: 510px) {
+      main { padding: 19px 14px; }
+      .masthead { padding-inline: 14px; }
+      .checkout { grid-template-columns: 1fr; gap: 10px; margin-top: 15px; }
+      section { padding: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="masthead"><span class="brand"><span class="sun" aria-hidden="true">✦</span> Daybreak Coffee</span><small>Store pickup</small></div>
+  </header>
+  <main>
+    <h1>Checkout</h1>
+    <p class="subtitle">Review your order before confirming pickup.</p>
+    <div class="checkout">
+      <section aria-labelledby="summary-title">
+        <h2 id="summary-title">Order summary</h2>
+        <div class="item">
+          <span class="sample" aria-hidden="true">D</span>
+          <div><strong>Daybreak Blend</strong><p class="detail">Whole bean · 340 g · Qty 1</p></div>
+        </div>
+        <div class="line"><span>Subtotal</span><span>$18.00</span></div>
+        <div class="line"><span>Pickup</span><span>Free</span></div>
+        <div class="line total"><span>Total</span><span>$18.00</span></div>
+      </section>
+      <section aria-labelledby="pickup-title">
+        <h2 id="pickup-title">Pickup details</h2>
+        <div class="pickup"><strong>Daybreak Roastery</strong><p class="detail">Today · 4:00–6:00 pm</p></div>
+        <div class="action">
+          <button type="button" id="place-order" data-click-count="0">Place order</button>
+          <div id="delivery-hit-area" aria-hidden="true"></div>
+        </div>
+        <p id="order-status" role="status">Demo checkout · no payment collected</p>
+      </section>
+    </div>
+  </main>
+  <script>
+    const order = document.getElementById('place-order');
+    order.addEventListener('click', () => {
+      order.dataset.clickCount = String(Number(order.dataset.clickCount) + 1);
+      document.getElementById('order-status').textContent = 'Demo order placed.';
+    });
+  </script>
+</body>
+</html>

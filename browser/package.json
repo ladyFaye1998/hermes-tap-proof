@@ -1,0 +1,9 @@
+{
+  "name": "tap-proof-browser",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local Chromium viewport probe for Tap Proof",
+  "dependencies": {
+    "playwright-core": "1.65.0"
+  }
+}
